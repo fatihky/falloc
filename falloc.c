@@ -96,7 +96,7 @@ static void *f_pool_block_alloc (f_pool_block_t *self, size_t size)
   // write offset at the beginning of the return block
   unsigned long offset = (unsigned long) (self->last - self->alloc);
 
-  memcpy(self->last, &offset, sizeof (unsigned long));
+  *((unsigned long *)self->last) = offset;
 
   // move last pointer by F_HEADER_SIZE
   self->last += F_HEADER_SIZE; // sizeof(unsigned long)
